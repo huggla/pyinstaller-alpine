@@ -15,7 +15,12 @@ RUN apk --update --no-cache add \
 RUN pip install \
     pycrypto
 
-ARG PYINSTALLER_TAG=v3.2
+# Install flask and gunicorn
+RUN pip install \
+    flask \
+    gunicorn
+
+ARG PYINSTALLER_TAG=v3.4
 
 # Build bootloader for alpine
 RUN git clone --depth 1 --single-branch --branch $PYINSTALLER_TAG https://github.com/pyinstaller/pyinstaller.git /tmp/pyinstaller \
