@@ -1,5 +1,5 @@
 # Python base image is needed or some applications will segfault.
-FROM huggla/python2.7-alpine
+FROM huggla/python2.7-alpine:test
 
 ARG PIP_PACKAGES="pycrypto flask gunicorn"
 ARG PYINSTALLER_TAG="develop"
