@@ -2,7 +2,7 @@
 FROM huggla/python2.7-alpine
 
 ARG PIP_PACKAGES="pycrypto flask gunicorn"
-ARG PYINSTALLER_TAG="master"
+ARG PYINSTALLER_TAG="develop"
 
 COPY ./bin /pyinstaller
 
