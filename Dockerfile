@@ -11,7 +11,7 @@ RUN apk add zlib-dev musl-dev libc-dev gcc git pwgen upx tk tk-dev \
  && pip install $PIP_PACKAGES \
  && git clone --depth 1 --single-branch --branch $PYINSTALLER_TAG https://github.com/pyinstaller/pyinstaller.git /tmp/pyinstaller \
  && cd /tmp/pyinstaller/bootloader \
- && rm src/pyi_path.c \
+ && rm src/pyi_* \
  && python ./waf -v configure --no-lsb all \
  && pip install .. \
  && rm -Rf /tmp/pyinstaller \
