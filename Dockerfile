@@ -1,5 +1,5 @@
 # Official Python base image is needed or some applications will segfault.
-FROM huggla/python2.7-alpine
+FROM huggla/python2.7-alpine:test
 
 # PyInstaller needs zlib-dev, gcc, libc-dev, and musl-dev
 RUN apk add \
@@ -20,7 +20,7 @@ RUN pip install \
     flask \
     gunicorn
 
-ARG PYINSTALLER_TAG=v3.4
+ARG PYINSTALLER_TAG=v3.2
 
 # Build bootloader for alpine
 RUN git clone --depth 1 --single-branch --branch $PYINSTALLER_TAG https://github.com/pyinstaller/pyinstaller.git /tmp/pyinstaller \
