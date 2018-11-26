@@ -4,7 +4,7 @@ FROM huggla/python2.7-alpine
 ARG PIP_PACKAGES="pycrypto flask gunicorn"
 ARG PYINSTALLER_TAG="v3.4"
 
-ADD ./bin /pyinstaller /src/
+COPY ./bin /pyinstaller
 
 RUN apk add zlib-dev musl-dev libc-dev gcc git pwgen \
  && pip install --upgrade pip \
