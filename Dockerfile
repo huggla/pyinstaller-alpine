@@ -1,7 +1,7 @@
 # Python base image is needed or some applications will segfault.
 FROM huggla/python2.7-alpine
 
-ARG PIP_PACKAGES="pycrypto pyinstaller flask gunicorn"
+ARG PIP_PACKAGES="pycrypto flask gunicorn"
 ARG PYINSTALLER_TAG="v3.2"
 
 COPY ./bin /pyinstaller
