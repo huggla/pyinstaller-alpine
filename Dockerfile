@@ -1,21 +1,38 @@
-# Python base image is needed or some applications will segfault.
+# Official Python base image is needed or some applications will segfault.
 FROM huggla/python2.7-alpine
 
-ARG PIP_PACKAGES="pycrypto flask gunicorn"
-ARG PYINSTALLER_TAG="v3.4"
+# PyInstaller needs zlib-dev, gcc, libc-dev, and musl-dev
+RUN apk add \
+    zlib-dev \
+    musl-dev \
+    libc-dev \
+    gcc \
+    git \
+    pwgen \
+    && pip install --upgrade pip
 
-COPY ./bin /pyinstaller
+# Install pycrypto so --key can be used with PyInstaller
+RUN pip install \
+    pycrypto
 
-RUN apk add zlib-dev musl-dev libc-dev gcc git pwgen upx tk tk-dev \
- && pip install --upgrade pip \
- && pip install $PIP_PACKAGES \
- && git clone --depth 1 --single-branch --branch $PYINSTALLER_TAG https://github.com/pyinstaller/pyinstaller.git /tmp/pyinstaller \
- && cd /tmp/pyinstaller/bootloader \
- && python ./waf configure --no-lsb all \
- && pip install .. \
- && rm -Rf /tmp/pyinstaller \
- && chmod a+x /pyinstaller/*
+# Install flask and gunicorn
+RUN pip install \
+    flask \
+    gunicorn
 
+ARG PYINSTALLER_TAG=v3.4
+
+# Build bootloader for alpine
+RUN git clone --depth 1 --single-branch --branch $PYINSTALLER_TAG https://github.com/pyinstaller/pyinstaller.git /tmp/pyinstaller \
+    && cd /tmp/pyinstaller/bootloader \
+    && python ./waf configure --no-lsb all \
+    && pip install .. \
+    && rm -Rf /tmp/pyinstaller
+
+VOLUME /src
 WORKDIR /src
+
+ADD ./bin /pyinstaller
+RUN chmod a+x /pyinstaller/*
 
 ENTRYPOINT ["/pyinstaller/pyinstaller.sh"]
