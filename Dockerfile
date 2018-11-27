@@ -12,7 +12,7 @@ RUN apk add zlib-dev musl-dev libc-dev gcc git pwgen upx tk tk-dev \
  && git clone --depth 1 --single-branch --branch $PYINSTALLER_TAG https://github.com/pyinstaller/pyinstaller.git /tmp/pyinstaller \
  && cd /tmp/pyinstaller/bootloader \
 # && rm src/pyi_* \
- && python ./waf -v configure --no-lsb all \
+ && python ./waf -vv configure --no-lsb all \
  && pip install .. \
  && rm -Rf /tmp/pyinstaller \
  && chmod a+x /pyinstaller/*
