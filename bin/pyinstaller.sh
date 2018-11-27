@@ -10,7 +10,9 @@ pyinstaller_args="${@/--random-key/--key $random_key}"
 # Use the hacked ldd to fix libc.musl-x86_64.so.1 location
 PATH="/pyinstaller:$PATH"
 
-if [ -f requirements.txt ]; then
+if [ -n "$REQUIREMENTS" ]; then
+    pip install $REQUIREMENTS
+elif [ -f requirements.txt ]; then
     pip install -r requirements.txt
 elif [ -f setup.py ]; then
     pip install .
