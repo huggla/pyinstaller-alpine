@@ -2,7 +2,7 @@
 FROM huggla/python2.7-alpine
 
 ARG PIP_PACKAGES="pycrypto"
-ARG PYINSTALLER_TAG="3.4"
+ARG PYINSTALLER_TAG="v3.4"
 
 COPY ./bin /pyinstaller
 
