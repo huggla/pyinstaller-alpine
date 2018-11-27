@@ -6,7 +6,7 @@ ARG PYINSTALLER_TAG="develop"
 
 COPY ./bin /pyinstaller
 
-RUN apk add zlib-dev musl-dev libc-dev gcc git pwgen upx tk tk-dev build-base \
+RUN apk add zlib-dev musl-dev libc-dev gcc git pwgen upx tk tk-dev build-base binutils \
  && pip install --upgrade pip \
  && pip install $PIP_PACKAGES \
  && git clone --depth 1 --single-branch --branch $PYINSTALLER_TAG https://github.com/pyinstaller/pyinstaller.git /tmp/pyinstaller \
