@@ -19,7 +19,7 @@ elif [ -f setup.py ]; then
 fi
 
 # Exclude pycrypto and PyInstaller from built packages
-exec pyinstaller \
+exec PYTHONOPTIMIZE=$PYTHONOPTIMIZE pyinstaller \
     --exclude-module pycrypto \
     --exclude-module PyInstaller \
     ${pyinstaller_args}
