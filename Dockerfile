@@ -19,6 +19,6 @@ RUN apk add zlib-dev musl-dev libc-dev gcc git pwgen upx tk tk-dev build-base bi
 
 WORKDIR /src
 
-ENV PYTHONOPTIMIZE="1"
+ENV PYTHONOPTIMIZE="2"
 
 ENTRYPOINT ["/pyinstaller/pyinstaller.sh"]
