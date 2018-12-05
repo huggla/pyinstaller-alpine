@@ -1,5 +1,6 @@
-# Python base image is needed or some applications will segfault.
-FROM huggla/python2.7-alpine
+ARG TAG="20181204"
+
+FROM huggla/python2.7-alpine:$TAG
 
 ARG PIP_PACKAGES="pycrypto"
 ARG PYINSTALLER_TAG="v3.4"
